@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd">
+    <!--默认注解映射的支持 -->
+    <mvc:annotation-driven/>
+
+    <context:component-scan base-package="com.steven.mysql.controller"></context:component-scan>
+
+    <mvc:view-controller path="/send/uploadpic" ></mvc:view-controller>
+
+    <!--<mvc:default-servlet-handler/>-->
+
+    <!--<mvc:resources location="/" mapping="*.txt"/>-->
+    <!--<mvc:resources location="/editor/*" mapping="/editor/**"/>-->
+    <!--<mvc:resources mapping="/editor/**" location="/WEB-INF/jsp/editor/" cache-period="31556926"/>-->
+
+    <!--<mvc:resources                      location="/static-resource/javascript/" mapping="/javascript/**"/>-->
+
+
+    <!--自动扫描目录下所有的类文件 -->
+    <!--<context:component-scan base-package="com.steven" />-->
+
+    <!--<bean id="viewResolver"-->
+          <!--class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="prefix" value="/WEB-INF/jsp/" />-->
+        <!--<property name="suffix" value=".jsp" />-->
+    <!--</bean>-->
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>    <!-- 前缀 -->
+        <property name="suffix" value=".jsp"/>    <!-- 后缀 -->
+    </bean>
+
+    <!-- 文件上传 -->
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置上传文件的最大尺寸为5MB -->
+        <property name="maxUploadSize">
+            <value>5242880</value>
+        </property>
+    </bean>
+
+</beans>
